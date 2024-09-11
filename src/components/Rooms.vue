@@ -53,24 +53,20 @@ function selectChat(chat: any) {
 </script>
 
 <style scoped>
-/* width */
 .rooms-container::-webkit-scrollbar {
   width: 6px;
 }
 
-/* Track */
 .rooms-container::-webkit-scrollbar-track {
   box-shadow: inset 0 0 5px rgb(240, 240, 240);
   border-radius: 10px;
 }
 
-/* Handle */
 .rooms-container::-webkit-scrollbar-thumb {
   background: rgb(211, 211, 211);
   border-radius: 10px;
 }
 
-/* Handle on hover */
 .rooms-container::-webkit-scrollbar-thumb:hover {
   background: #9c9c9c;
 }

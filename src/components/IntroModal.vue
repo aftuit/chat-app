@@ -6,20 +6,16 @@
       <div class="fixed inset-0 bg-black bg-opacity-50"></div>
       <!-- Modal -->
       <div class="relative bg-white rounded-lg shadow-lg w-96 p-6 z-10">
+        <div class="mb-3 text-xl">Who are you?</div>
         <div class="flex gap-2 items-center w-full">
-          <div
-            v-for="user in userRoles"
-            :key="user.role"
-            @click="selectRole(user)"
+          <div v-for="user in userRoles" :key="user.role" @click="selectRole(user)"
             class="border rounded w-full p-3 text-center border-dashed hover:border-green-500 hover:text-green-500 cursor-pointer"
-            :class="{ 'border-green-500 text-green-500': selectedRole.role === user.role }">
+            :class="{ 'border-2 border-green-600 text-green-500': selectedRole.role === user.role }">
             {{ user.role }}
           </div>
         </div>
         <div class="mt-6 text-right">
-          <button
-            @click="confirmRole"
-            :disabled="!selectedRole.role"
+          <button @click="confirmRole" :disabled="!selectedRole.role"
             class="w-full px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded">
             Select
           </button>
