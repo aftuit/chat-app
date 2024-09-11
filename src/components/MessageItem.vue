@@ -9,8 +9,8 @@
       <div class="header flex justify-between">
         <div v-if="!isCurrentUser" class="text-sm font-semibold text-blue-400">{{ username }}</div>
         <span class="ms-auto absolute -right-2 -top-2 invisible  group-hover/item:visible"
-          @click="selectMessage(message)">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+          @click="getSelectedMsg = message">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
             class="ms-1 cursor-pointer">
             <path
               d="M14.3827 5.07615C14.7564 5.23093 15 5.59557 15 6.00003V9.45783C19.0571 10.7321 22 14.5224 22 19V20L21.098 18.8726C20.3712 17.9641 19.496 17.1851 18.5095 16.5684C17.4296 15.8936 16.2393 15.4274 15 15.1877V18C15 18.4045 14.7564 18.7691 14.3827 18.9239C14.009 19.0787 13.5789 18.9931 13.2929 18.7071L7.29289 12.7071C6.90237 12.3166 6.90237 11.6834 7.29289 11.2929L13.2929 5.29292C13.5789 5.00692 14.009 4.92137 14.3827 5.07615Z"
@@ -24,8 +24,8 @@
       <div class="leading-5 truncate px-3">{{ message.message }}</div>
       <div class="flex justify-end items-center gap-1">
         <span class="text-blue-400 text-sm float-end">{{ formatDate(message.created_date) }}</span>
-        <Loader v-if="message.loading && !message.failed" />
-        <span v-else-if="isCurrentUser">
+        <!-- <Loader v-if="message.loading && !message.failed" /> -->
+        <span v-if="isCurrentUser">
           <svg width="20" height="20" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"
             v-if="message.is_read">
             <g clip-path="url(#clip0_3543_94707)">
@@ -45,9 +45,6 @@
               fill="#5D8EF1" />
           </svg>
         </span>
-        <!-- <span>
-            
-          </span> -->
       </div>
     </div>
   </li>
@@ -55,7 +52,6 @@
 <script setup lang="ts">
 import { formatDate, getStorage } from "../utils/helper";
 import { computed } from "vue";
-import Loader from "./ui/Loader.vue";
 
 const emit = defineEmits<{
   (e: "select-message", msg: any): void;

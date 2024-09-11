@@ -27,13 +27,14 @@
               <MessageItem :message="message" :selected-message="selectedMessage" :is-again-assigned="privateChatMessages[index - 1]
                 ? privateChatMessages[index - 1]?.sender_id == privateChatMessages[index]?.sender_id
                 : false
-                " />
+                " @select-message="selectMessage" />
             </template>
           </ul>
           <p class="pt-12 text-center text-gray-600" v-else>Select a chat to start messaging ...</p>
         </div>
         <div class="h-16" v-if="selectedChat?.id">
-          <MessageForm v-model="chatMessage" :is-sending="isSending" @send-message="sendMessage" />
+          <MessageForm v-model="chatMessage" :is-sending="isSending" :selected-message="selectedMessage"
+            @send-message="sendMessage" @select-message="selectMessage"/>
         </div>
       </div>
     </div>
@@ -58,6 +59,7 @@ const selectedChat = ref<any>();
 const selectedMessage = ref<any>();
 const chatMessage = ref<string>("");
 const validToken = ref<boolean>(false);
+const loading = ref<boolean>(false);
 
 const isSending = computed(() => privateChatMessages.value.some(msg => msg.loading))
 
@@ -67,8 +69,6 @@ function initWebSocket() {
 
   connection.value.onopen = function () {
     console.log("Connection started!");
-    // if (event.data) {
-    // }
     getPrivateChatList();
   };
 
@@ -156,7 +156,6 @@ const sendPing = () => {
   handleAction(msg);
 };
 
-// Call this function every 30 seconds or as needed
 setInterval(sendPing, 30000);
 
 function setChatList(data: any) {
@@ -176,8 +175,9 @@ function setMessage(data: any) {
   }
 }
 function setPing() { }
-function selectMessage(message: any) {
-  Object.assign(selectedMessage.value, message)
+
+function selectMessage(msg: any) {
+  selectedMessage.value = msg
 }
 
 function closeWebSocket() {
