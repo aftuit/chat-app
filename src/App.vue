@@ -54,7 +54,7 @@
 
 <script setup lang="ts">
 import { ref, computed, reactive, onMounted, onBeforeUnmount, nextTick } from "vue";
-import { ACTIONS } from "./utils/const";
+import { API,ACTIONS } from "./utils/const";
 import { Message } from "./utils/interfaces";
 import { getStorage, removeStorage } from "./utils/helper";
 import IntroModal from "./components/IntroModal.vue";
@@ -78,7 +78,7 @@ const meta = reactive({ page: 0, total_pages: -1 });
 const isSending = computed(() => privateChatMessages.value.some(msg => msg.loading));
 
 function initWebSocket() {
-  const url = import.meta.env.VITE_API_SOCKET_URL + getStorage("accessToken");
+  const url = API + getStorage("accessToken");
   connection.value = new WebSocket(url);
 
   connection.value.onopen = function () {
