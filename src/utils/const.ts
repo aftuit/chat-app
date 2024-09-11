@@ -3,8 +3,6 @@ export const ROLE_1 =
 export const ROLE_2 =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNiwicm9sZSI6ImN1c3RvbWVyIiwiaWF0IjoxNzI1OTQ2MDg4LCJleHAiOjE3MjYwNzU2ODgsImp0aSI6IjRiNzNmMjYyYjU5MDQxYWU5MWNmNzk3NDI1Y2QyZjBlIiwidG9rZW5fdHlwZSI6ImFjY2VzcyJ9.BDNfabBNnvVJGYxaxLWqTQoDOOn4tJjgMDhZ_DPeyJs";
 
-export const API = "ws://5.182.26.58:4321/ws/web?token=";
-
 export const ACTIONS = {
   // To get all chat list!
   CHAT_LIST: "get_private_chat_list",

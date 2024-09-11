@@ -10,7 +10,7 @@
           <div class="flex justify-between items-center px-5 h-full" v-if="selectedChat?.id">
             <div>
               <div class="font-semibold text-xl">Room - {{ selectedChat?.id }}</div>
-              <div class="text-gray-400">{{ 2 }} members, {{ 1 }} online</div>
+              <div class="text-gray-400">2 members, 2 online</div>
             </div>
             <div class="flex justify-end items-center gap-5">
               <Logout @click="logout" />
@@ -54,7 +54,7 @@
 
 <script setup lang="ts">
 import { ref, computed, reactive, onMounted, onBeforeUnmount, nextTick } from "vue";
-import { API,ACTIONS } from "./utils/const";
+import { ACTIONS } from "./utils/const";
 import { Message } from "./utils/interfaces";
 import { getStorage, removeStorage } from "./utils/helper";
 import IntroModal from "./components/IntroModal.vue";
@@ -78,7 +78,7 @@ const meta = reactive({ page: 0, total_pages: -1 });
 const isSending = computed(() => privateChatMessages.value.some(msg => msg.loading));
 
 function initWebSocket() {
-  const url = API + getStorage("accessToken");
+  const url = import.meta.env.VITE_API_SOCKET_URL + getStorage("accessToken");
   connection.value = new WebSocket(url);
 
   connection.value.onopen = function () {
