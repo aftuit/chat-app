@@ -146,7 +146,7 @@ function getPrivateChatList() {
   handleAction(msg);
 }
 
-function getPrivateChatMessages(chatRoom: any, page: number = 1) {
+function getPrivateChatMessages(chatRoom: any, page: number | null) {
   const msg = {
     action: ACTIONS.GET_PRIVATE_CHAT,
     query: {
