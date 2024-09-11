@@ -18,3 +18,7 @@ export const formatDate = (dateString: Date) => {
 
   return `${hours}:${minutes}`;
 };
+
+export const getUsername = (user_id: number) => {
+  return +user_id === 25 ? "Mirmux" : "Fozil";
+};
